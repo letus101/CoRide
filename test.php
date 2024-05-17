@@ -6,8 +6,9 @@
     <link href="./Assets/css/tailwind.css" rel="stylesheet">
 </head>
 <body>
-<h1 class="text-3xl font-bold underline bg-amber-600">
+<h1 class="text-3xl font-bold underline bg-red-500">
     Hello world!
 </h1>
 </body>
+<script src="./node_modules/preline/dist/preline.js"></script>
 </html>
