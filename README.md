@@ -4,5 +4,5 @@
 ### Membres du groupe:
 - [Youssef ketaj](https://twitter.com/youssef_ketaj)
 - [Oussama Farid]
-- [Oussama Taqqi]
+- [Oussama Taki]
 - [Abdelhakim Mime]
