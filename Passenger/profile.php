@@ -13,7 +13,7 @@ $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Chemin de l'avatar
-$avatar_path = 'media/avatar/' . $user['AVATAR'];
+$avatar_path = '../media/avatar/' . $user['AVATAR'];
 ?>
 
 <!DOCTYPE html>
