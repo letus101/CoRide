@@ -10,6 +10,7 @@
 <?php
 require_once './config/cnx.php';
 $con = cnx_pdo();
+
 if (isset($_POST['signin']) && !empty($_POST['email']) && !empty($_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -17,42 +18,42 @@ if (isset($_POST['signin']) && !empty($_POST['email']) && !empty($_POST['passwor
     $req->bindValue(':email', $email);
     $req->execute();
     $user = $req->fetch();
-    if ($user) {
-        if (password_verify($password, $user['PASSWORD_HASH'])) {
-            $req_role = $con->prepare("SELECT * FROM role");
-            $req_role->execute();
-            $role = $req_role->fetchAll();
-            session_start();
-            foreach ($role as $r) {
-                if ($r['ROLE_ID'] == $user['ROLE_ID']) {
-                    $_SESSION['email'] = $user['EMAIL'];
-                    $_SESSION['id']= $user['USER_ID'];
-                    $_SESSION['role'] = $r['ROLE_NAME'];
-                    $_SESSION['role_id'] = $r['ROLE_ID'];
-                    if ($r['ROLE_NAME'] == 'Driver'){
-                        $req_trip = $con->prepare("SELECT * FROM trip WHERE USER_ID = :id");
-                        $req_trip->bindValue(':id', $user['USER_ID']);
-                        $req_trip->execute();
-                        $trip = $req_trip->fetch();
-                        if ($trip){
-                            header('Location: ./Driver/dashboard.php');
-                        }else{
-                            header('Location: ./Driver/create_trip.php');
-                        }
-                    }
-                    if ($r['ROLE_NAME'] == 'Passenger'){
-                        header('Location: ./Passenger/dashboard.php');
+    
+    if ($user && password_verify($password, $user['PASSWORD_HASH'])) {
+        $req_role = $con->prepare("SELECT * FROM role");
+        $req_role->execute();
+        $role = $req_role->fetchAll();
+        session_start();
+        foreach ($role as $r) {
+            if ($r['ROLE_ID'] == $user['ROLE_ID']) {
+                $_SESSION['email'] = $user['EMAIL'];
+                $_SESSION['id'] = $user['USER_ID'];
+                $_SESSION['role'] = $r['ROLE_NAME'];
+                $_SESSION['role_id'] = $r['ROLE_ID'];
+                
+                if ($r['ROLE_NAME'] == 'Driver') {
+                    $req_trip = $con->prepare("SELECT * FROM trip WHERE USER_ID = :id");
+                    $req_trip->bindValue(':id', $user['USER_ID']);
+                    $req_trip->execute();
+                    $trip = $req_trip->fetch();
+                    if ($trip) {
+                        header('Location: ./Driver/dashboard.php?id=' . $user['USER_ID']);
+                    } else {
+                        header('Location: ./Driver/create_trip.php?id=' . $user['USER_ID']);
                     }
                 }
+                
+                if ($r['ROLE_NAME'] == 'Passenger') {
+                    header('Location: ./Passenger/dashboard.php?id=' . $user['USER_ID']);
+                }
             }
-        } else {
-            echo "<script>alert('Wrong password')</script>";
         }
     } else {
-        echo "<script>alert('Wrong Email ')</script>";
+        echo "<script>alert('Wrong Email or Password')</script>";
     }
 }
 ?>
+
 <main class="w-full max-w-md mx-auto p-6">
     <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <div class="p-4 sm:p-7">
