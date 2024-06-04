@@ -20,18 +20,17 @@ if (isset($_POST['submit'])) {
     $arrival_location = $_POST['arrival_location'];
     $departure_time = $_POST['departure_time'];
     $trip_start_date = $_POST['trip_start_date'];
-    $trip_end_date = $_POST['trip_end_date'];
     $available_seats = $_POST['available_seats'];
     $price_per_passenger = $_POST['price_per_passenger'];
     $description = $_POST['description'];
 
     // Validate input
-    if (empty($departure_city) || empty($departure_location) || empty($arrival_city) || empty($arrival_location) || empty($departure_time) || empty($trip_start_date) || empty($trip_end_date) || empty($available_seats) || empty($price_per_passenger) || empty($description)) {
+    if (empty($departure_city) || empty($departure_location) || empty($arrival_city) || empty($arrival_location) || empty($departure_time) || empty($trip_start_date) || empty($available_seats) || empty($price_per_passenger) || empty($description)) {
         $message = "All fields are required.";
     } elseif (!is_numeric($available_seats) || !is_numeric($price_per_passenger)) {
         $message = "Available seats and price per passenger must be numeric.";
     } else {
-        $sql = "INSERT INTO trip (USER_ID, DEPARTURE_CITY, DEPARTURE_LOCATION, ARRIVAL_, ARRIVAL_1, DEPARTURE_TIME, TRIP_START_DATE, TRIP_END_DATE, AVAILABLE_SEATS, PRICE_PER_PASSENGER, DESCRIPTION) VALUES (:user_id, :departure_city, :departure_location, :arrival_city, :arrival_location, :departure_time, :trip_start_date, :trip_end_date, :available_seats, :price_per_passenger, :description)";
+        $sql = "INSERT INTO trip (USER_ID, DEPARTURE_CITY, DEPARTURE_LOCATION, ARRIVAL_, ARRIVAL_1, DEPARTURE_TIME, TRIP_START_DATE, AVAILABLE_SEATS, PRICE_PER_PASSENGER, DESCRIPTION) VALUES (:user_id, :departure_city, :departure_location, :arrival_city, :arrival_location, :departure_time, :trip_start_date, :available_seats, :price_per_passenger, :description)";
 
         $stmt = $con->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
@@ -41,7 +40,6 @@ if (isset($_POST['submit'])) {
         $stmt->bindParam(':arrival_location', $arrival_location);
         $stmt->bindParam(':departure_time', $departure_time);
         $stmt->bindParam(':trip_start_date', $trip_start_date);
-        $stmt->bindParam(':trip_end_date', $trip_end_date);
         $stmt->bindParam(':available_seats', $available_seats);
         $stmt->bindParam(':price_per_passenger', $price_per_passenger);
         $stmt->bindParam(':description', $description);
@@ -56,7 +54,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,10 +90,6 @@ if (isset($_POST['submit'])) {
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="trip_start_date">Trip Start Date:</label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="trip_start_date" type="date" name="trip_start_date" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="trip_end_date">Trip End Date:</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="trip_end_date" type="date" name="trip_end_date" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="available_seats">Available Seats:</label>

@@ -32,15 +32,14 @@ if (isset($_POST['signin']) && !empty($_POST['email']) && !empty($_POST['passwor
                 $_SESSION['role_id'] = $r['ROLE_ID'];
                 
                 if ($r['ROLE_NAME'] == 'Driver') {
+                    header('Location: ./Driver/dashboard.php?id=' . $user['USER_ID']);
                     $req_trip = $con->prepare("SELECT * FROM trip WHERE USER_ID = :id");
                     $req_trip->bindValue(':id', $user['USER_ID']);
                     $req_trip->execute();
                     $trip = $req_trip->fetch();
-                    if ($trip) {
-                        header('Location: ./Driver/dashboard.php?id=' . $user['USER_ID']);
-                    } else {
-                        header('Location: ./Driver/create_trip.php?id=' . $user['USER_ID']);
-                    }
+                  
+                   
+                   
                 }
                 
                 if ($r['ROLE_NAME'] == 'Passenger') {
