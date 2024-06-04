@@ -41,12 +41,12 @@ $avatar_path = '../media/avatar/' . $user['AVATAR'];
                 <p class="mb-2"><span class="font-semibold">Last Name:</span> <?= $user['LNAME'] ?></p>
                 <p class="mb-2"><span class="font-semibold">Email:</span> <?= $user['EMAIL'] ?></p>
                 <p class="mb-2"><span class="font-semibold">Phone:</span> <?= $user['PHONE'] ?></p>
-                <!-- Add more information here -->
                 <div class="flex justify-center mt-6">
-                    <a href="dashboard.php?id=<?= $user_id ?>"class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4">Annuler</a>
-                    <a href="edit_profile.php?id=<?= $user_id ?>" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4">Modifier Profile</a>
-                    <a href="../logout.php" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Déconnexion</a>
-                </div>
+    <a href="dashboard.php?id=<?= $user_id ?>" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-2 rounded mr-2">Annuler</a>
+    <a href="edit_profile.php?id=<?= $user_id ?>" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-2 rounded mr-2">Modifier Profile</a>
+    <a href="../logout.php" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-2 rounded">Déconnexion</a>
+</div>
+
             </div>
         </div>
     </div>
