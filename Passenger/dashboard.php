@@ -91,7 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
                 <div class="flex items-center px-4">
                     <form method="post" class="mx-4">
-                        <h1>.</h1>
+                    <h1 class="hidden">.</h1>
+
                         From: 
                         <input class="w-28 border rounded-md px-4 py-2" type="text" name="departure_city" placeholder="CITY">
                         <input class="w-28 border rounded-md px-4 py-2" type="text" name="departure_location" placeholder="LOCATION">
@@ -100,7 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input class="w-28 border rounded-md px-4 py-2" type="text" name="arrival_location" placeholder="LOCATION">
                         <input class="w-28 border rounded-md px-4 py-2" type="date" name="date" placeholder="Date">
                         <button type="submit" class="px-4 py-2 bg-blue-500 text-blue rounded-md ml-2">Filter</button>
-                        <h1>.</h1>
+                        <h1 class="hidden">.</h1>
+
                         
                     </form>
                 </div>

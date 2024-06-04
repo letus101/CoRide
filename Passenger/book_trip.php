@@ -54,14 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$reservation_exists) {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../Assets/css/tailwind.css" rel="stylesheet">
     <title>Book Trip</title>
+    <link href="../Assets/css/tailwind.css" rel="stylesheet">
 </head>
 <body>
     <div class="flex h-screen bg-gray-100">
@@ -92,25 +91,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$reservation_exists) {
                 </div>
             </div>
             <div class="p-4">
-                <h1 class="text-2xl font-bold">Trip Details</h1>
-                <div class="mt-4">
-                    <p><strong>From:</strong> <?= $trip_info['DEPARTURE_CITY'] ?></p>
-                    <p><strong>To:</strong> <?= $trip_info['ARRIVAL_'] ?></p>
-                    <p><strong>Date:</strong> <?= $trip_info['TRIP_START_DATE'] ?></p>
-                    <p><strong>Seats Available:</strong> <?= $trip_info['AVAILABLE_SEATS'] ?></p>
-                    <p><strong>Driver Name:</strong> <?= $trip_info['DRIVER_NAME'] ?></p>
-                    <p><strong>Driver Phone Number:</strong> <?= $trip_info['DRIVER_PHONE_NUMBER'] ?></p>
-                </div>
-                <?php if (!$reservation_exists): ?>
-                <form method="post" action="">
-                    <input type="hidden" name="trip_id" value="<?= $trip_id ?>">
-                    <button type="submit" class="px-4 py-2 bg-blue-500 text-blue rounded-md ml-2 hover:bg-blue-600">Reserve</button>
-                </form>
-                <?php endif; ?>
-            </div>
+    <h1 class="text-2xl font-bold">Trip Details</h1>
+    <div class="mt-8 bg-white rounded-lg shadow-md p-4 max-w-md mx-auto">
+        <p><strong>From:</strong> <?= $trip_info['DEPARTURE_CITY'] ?>(<?= $trip_info['DEPARTURE_LOCATION'] ?>)</p>
+        <p><strong>To:</strong> <?= $trip_info['ARRIVAL_'] ?>(<?= $trip_info['ARRIVAL_1'] ?>)</p>
+        <p><strong>Date:</strong> <?= $trip_info['TRIP_START_DATE'] ?></p>
+        <p><strong>Seats Available:</strong> <?= $trip_info['AVAILABLE_SEATS'] ?></p>
+        <p><strong>Driver Name:</strong> <?= $trip_info['DRIVER_NAME'] ?></p>
+        <p><strong>Driver Phone Number:</strong> <?= $trip_info['DRIVER_PHONE_NUMBER'] ?></p>
+        <?php if (!$reservation_exists): ?>
+        <form method="post" action="">
+            <input type="hidden" name="trip_id" value="<?= $trip_id ?>">
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md mt-4 hover:bg-blue-600">Reserve</button>
+        </form>
+        <?php endif; ?>
+    </div>
+</div>
+
         </div>
     </div>
 </body>
 <script src="./node_modules/preline/dist/preline.js"></script>
 </html>
-
